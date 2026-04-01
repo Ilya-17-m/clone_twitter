@@ -1,0 +1,33 @@
+version: '3.2'
+
+services:
+  app:
+    build:
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"
+    command:
+      - 'uvicorn'
+      - 'backend.clone_twitter:app'
+      - '--host'
+      - '127.0.0.1'
+      - '--port'
+      - '8000'
+
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=twitter
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=u123
+    ports:
+      - '5432:5432'
+    hostname: localhost
+    volumes:
+      - ./db/:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx
+    ports:
+      - '80:80'
+    hostname: localhost
