@@ -1,8 +1,10 @@
 import uvicorn
 import logging
+import sentry_sdk
 from fastapi import FastAPI, Header, status, HTTPException, File, UploadFile
 from sqlalchemy import select, delete, insert
 from sqlalchemy.orm import selectinload
+from prometheus_fastapi_instrumentator import Instrumentator
 
 from .models import (
     ProfileORM,
@@ -12,13 +14,21 @@ from .models import (
     MediaORM
 )
 from .schemas import CreateTweetSchema
-from .conf import SessionDep, lifespan
+from .database import SessionDep, lifespan
+from .conf import dsn
+
+
+sentry_sdk.init(
+    dsn=dsn,
+    send_default_pii=True,
+)
 
 
 logger = logging.getLogger(__name__)
 
 app = FastAPI(lifespan=lifespan)
 
+Instrumentator().instrument(app).expose(app)
 
 @app.get("/api/users/me", status_code=status.HTTP_200_OK)
 async def get_my_profile(
@@ -317,6 +327,11 @@ async def upload_media_file(
     await session.commit()
 
     return {"result": "true", "media_id": my_file.id}
+
+
+@app.get("/check-sentry")
+async def check_work_sentry():
+    return 1 / 0
 
 
 if __name__ == "__main__":
