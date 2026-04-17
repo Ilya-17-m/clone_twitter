@@ -24,6 +24,9 @@
 + PostgreSQL
 + Uvicorn
 + Logging
++ Sentry
++ Grafana
++ Prometheus
 
 
 ## Разработка:
