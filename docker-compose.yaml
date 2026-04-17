@@ -1,4 +1,5 @@
-version: '3.2'
+
+
 
 services:
   app:
@@ -13,6 +14,11 @@ services:
       - '127.0.0.1'
       - '--port'
       - '8000'
+    logging:
+      driver: loki
+      options:
+        loki-url: http://localhost:3100/loki/api/v1/push
+
 
   db:
     image: postgres:latest
@@ -26,8 +32,21 @@ services:
     volumes:
       - ./db/:/var/lib/postgresql/data
 
+
   nginx:
     image: nginx
     ports:
       - '80:80'
     hostname: localhost
+
+
+  grafana:
+    image: grafana/grafana:9.1.5
+    ports:
+      - "3000:3000"
+
+
+  loki:
+    image: grafana/loki:latest
+    ports:
+      - "3100:3100"
