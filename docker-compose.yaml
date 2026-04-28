@@ -27,7 +27,7 @@ services:
       - ./db/:/var/lib/postgresql/data
 
   nginx:
-    image: nginx
+    image: nginx:latest
     ports:
       - '80:80'
     hostname: localhost

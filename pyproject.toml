@@ -14,7 +14,10 @@ dependencies = [
     "asyncpg (>=0.31.0,<0.32.0)",
     "python-dotenv (>=1.2.2,<2.0.0)",
     "pytest (>=9.0.2,<10.0.0)",
-    "uvicorn (>=0.42.0,<0.43.0)"
+    "uvicorn (>=0.42.0,<0.43.0)",
+    "sentry-sdk (>=2.58.0,<3.0.0)",
+    "prometheus-fastapi-instrumentator (>=7.1.0,<8.0.0)",
+    "python-multipart (>=0.0.27,<0.0.28)"
 ]
 
 

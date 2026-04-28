@@ -6,7 +6,7 @@ from typing import Annotated
 from fastapi.params import Depends
 from dotenv import load_dotenv
 
-from .models import Base
+from models import Base
 
 load_dotenv()
 

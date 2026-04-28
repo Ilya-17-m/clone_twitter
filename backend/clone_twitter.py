@@ -6,16 +6,16 @@ from sqlalchemy import select, delete, insert
 from sqlalchemy.orm import selectinload
 from prometheus_fastapi_instrumentator import Instrumentator
 
-from .models import (
+from models import (
     ProfileORM,
     follow_association_table,
     TweetORM,
     LikeORM,
     MediaORM
 )
-from .schemas import CreateTweetSchema
-from .database import SessionDep, lifespan
-from .conf import dsn
+from schemas import CreateTweetSchema
+from database import SessionDep, lifespan
+from conf import dsn
 
 
 sentry_sdk.init(
