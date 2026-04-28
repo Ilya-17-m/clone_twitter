@@ -17,17 +17,26 @@ logging.config.dictConfig({
             "format": "%(asctime)s %(levelname)s [%(name)s:%(lineno)s] %(module)s %(message)s"
         },
     },
+
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
             "formatter": "console",
         },
+        "file": {
+            "()": "CustomFileHandler",
+            "level": "ERROR",
+            "formatter": "console",
+            "file_name": "file_error.log",
+        },
     },
+
     "loggers": {
-        "": {
+        "module_loggers": {
             "level": LOGLEVEL,
             "handlers": [
                 "console",
+                "file",
             ]
         }
     }
