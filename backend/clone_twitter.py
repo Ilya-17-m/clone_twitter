@@ -1,22 +1,16 @@
-import uvicorn
 import logging
+
 import sentry_sdk
-from fastapi import FastAPI, Header, status, HTTPException, File, UploadFile
-from sqlalchemy import select, delete, insert
-from sqlalchemy.orm import selectinload
-from prometheus_fastapi_instrumentator import Instrumentator
-
-from models import (
-    ProfileORM,
-    follow_association_table,
-    TweetORM,
-    LikeORM,
-    MediaORM
-)
-from schemas import CreateTweetSchema
-from database import SessionDep, lifespan
+import uvicorn
 from conf import dsn
-
+from database import SessionDep, lifespan
+from fastapi import FastAPI, File, Header, HTTPException, UploadFile, status
+from models import (LikeORM, MediaORM, ProfileORM, TweetORM,
+                    follow_association_table)
+from prometheus_fastapi_instrumentator import Instrumentator
+from schemas import CreateTweetSchema
+from sqlalchemy import delete, insert, select
+from sqlalchemy.orm import selectinload
 
 sentry_sdk.init(
     dsn=dsn,

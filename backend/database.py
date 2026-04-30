@@ -1,12 +1,13 @@
 import os
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
-from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from typing import Annotated
-from fastapi.params import Depends
-from dotenv import load_dotenv
 
+from dotenv import load_dotenv
+from fastapi import FastAPI
+from fastapi.params import Depends
 from models import Base
+from sqlalchemy.ext.asyncio import (AsyncSession, async_sessionmaker,
+                                    create_async_engine)
 
 load_dotenv()
 

@@ -1,5 +1,5 @@
-from sqlalchemy import Column, Integer, String, Table, ForeignKey, LargeBinary
-from sqlalchemy.orm import relationship, DeclarativeBase
+from sqlalchemy import Column, ForeignKey, Integer, LargeBinary, String, Table
+from sqlalchemy.orm import DeclarativeBase, relationship
 
 
 class Base(DeclarativeBase):

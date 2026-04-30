@@ -1,7 +1,7 @@
-import os
 import logging.config
-from dotenv import load_dotenv
+import os
 
+from dotenv import load_dotenv
 
 load_dotenv()
 
