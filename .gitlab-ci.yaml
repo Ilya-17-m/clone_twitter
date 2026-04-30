@@ -1,0 +1,19 @@
+image: python:3.12
+
+stages:
+  - test
+
+before_script:
+  - pip install isort flake8
+
+
+flake8:
+  stage: test
+  script:
+    - flake8 .
+
+
+isort:
+  stage: test
+  script:
+    - isort . --check-only
