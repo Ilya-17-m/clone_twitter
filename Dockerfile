@@ -14,4 +14,6 @@ RUN poetry install --no-root
 COPY . .
 COPY nginx.conf /etc/nginx/nginx.conf
 
+EXPOSE 8000
+
 CMD ["poetry", "run", "uvicorn", "backend.clone_twitter:app", "--host", "127.0.0.1", "--port", "8000"]
